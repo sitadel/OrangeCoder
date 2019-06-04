@@ -8,12 +8,17 @@
       <h3>Orange Coder</h3>
     </div>
     <div>
-      <input type="text" placeholder="Name" v-model="newReptile" @keyup.enter="addMe">
-      <input type="password" placeholder="*Pass Code" v-model="passCode
-			" @keyup.enter="addMe">
-      <button @click="addMe">Add Me</button>
+      <input type="text" placeholder="Topic" v-model="newReptile" @keyup.enter="addTopic">
+      <input
+        type="password"
+        placeholder="*Pass Code"
+        v-model="passCode
+			"
+        @keyup.enter="addTopic"
+      >
+      <button @click="addTopic">Add Topic</button>
     </div>
-    <p>*Pass Code is for you to un-signup yourself</p>
+    <p>*Pass Code is for you to remove Topic added by you</p>
     <div>Orange coder is an coding interest group. Let's start with a lunch session to go through free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
     <ul class="reptileList">
       <li>Google Firestore</li>
@@ -35,6 +40,7 @@
           v-model="passCode"
           @keyup.enter="deleteReptile"
         >
+        <button @click="likeReptile(reptile)">{{ reptile.like }} Like</button>
         <button @click="deleteReptile(reptile)">Remove</button>
       </li>
     </ul>
@@ -59,14 +65,18 @@ export default {
     };
   },
   methods: {
-    addMe: function() {
+    addTopic: function() {
       this.$firestore.reptiles.add({
         name: this.newReptile,
         passCode: this.passCode,
+        like: 0,
         timestamp: new Date()
       });
       this.newReptile = "";
       this.passCode = "";
+    },
+    likeReptile: function(reptile) {
+      reptile.like++;
     },
     deleteReptile: function(reptile) {
       //console.log(this.passCode);
