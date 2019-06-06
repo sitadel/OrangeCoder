@@ -1,53 +1,23 @@
 <template>
   <div id="app">
     <img
-      width="300"
+      width="80%"
       src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-bg7-ake1889-ake-026-por-l.jpg?auto=format&bg=F4F4F3&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-1.1.0&mark=rawpixel-watermark.png&markalpha=90&markpad=13&markscale=10&markx=25&q=75&usm=15&vib=3&w=1400&s=2accc7930ae14ed3c1967443ac4c8d85"
     >
     <div>
       <h3>Orange Coder</h3>
     </div>
+    <div>Orange coder is an coding interest group. Let's start with a session to go through a few free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
+    <div>
+      <h3>Topics</h3>
+    </div>
     <div>
       <input type="text" placeholder="Topic" v-model="newReptile" @keyup.enter="addTopic">
-      <input
-        type="password"
-        placeholder="*Pass Code"
-        v-model="passCode
-			"
-        @keyup.enter="addTopic"
-      >
+      <input type="password" placeholder="*Pass Code" v-model="passCode" @keyup.enter="addTopic">
       <button @click="addTopic">Add Topic</button>
     </div>
     <div class="errorMessageStyle" v-if="errorMessage.length > 0">{{errorMessage}}</div>
-    <p>*Pass Code is for you to remove Topic added by you</p>
-    <div>Orange coder is an coding interest group. Let's start with a lunch session to go through free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
-    <carousel :per-page="1" :navigate-to="someLocalProperty" :mouse-drag="false">
-      <slide>
-        <img width="300" src="@/assets/TechBooksStartCoding.jpg">
-      </slide>
-      <slide>
-        <img width="300" src="@/assets/logo.png">
-      </slide>
-    </carousel>
-    <ul class="reptileList">
-      <li>Google Firestore</li>
-      <li>CodeSandBox</li>
-      <li>Node JS</li>
-      <li>Vue</li>
-    </ul>
-    <p></p>
-    <div>
-      <h3>Participants</h3>This list refreshed automatically by Firestore realtime database.
-    </div>
-
-    <input
-      type="password"
-      placeholder="*Pass Code"
-      width="200px"
-      v-model="passCode"
-      @keyup.enter="deleteReptile"
-    >
-
+    <p>*Pass Code is for you to remove Topic added by you</p>This topic list is refreshed automatically by Google Firestore.
     <ul class="reptileList">
       <li v-for="reptile in reptiles">
         {{ reptile.name }}
@@ -55,6 +25,33 @@
         <button @click="deleteReptile(reptile)">Remove</button>
       </li>
     </ul>
+    <br>
+    <carousel
+      :per-page="1"
+      :autoplay="true"
+      :autoplayTimeout="3000"
+      :mouse-drag="false"
+      :loop="true"
+    >
+      <slide>
+        <img
+          width="80%"
+          src="https://github.com/sitadel/OrangeCoder/blob/master/assets/TechBooksStartCoding.jpg?raw=true"
+        >
+      </slide>
+      <slide>
+        <img
+          width="80%"
+          src="https://www.timbersmart.co.nz/wp-content/uploads/2019/05/pwa_native_hybride.jpg"
+        >
+      </slide>
+      <slide>
+        <img
+          width="80%"
+          src="https://developers.google.com/web/progressive-web-apps/images/pwa-reliable.png"
+        >
+      </slide>
+    </carousel>
   </div>
 </template>
 
