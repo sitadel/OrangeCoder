@@ -2,11 +2,9 @@
   <div id="app">
     <img
       width="80%"
-      src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-bg7-ake1889-ake-026-por-l.jpg?auto=format&bg=F4F4F3&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-1.1.0&mark=rawpixel-watermark.png&markalpha=90&markpad=13&markscale=10&markx=25&q=75&usm=15&vib=3&w=1400&s=2accc7930ae14ed3c1967443ac4c8d85"
+      alt="Orange Coder"
+      src="https://github.com/sitadel/OrangeCoder/blob/master/assets/OrangeCoder.jpg?raw=true"
     >
-    <div>
-      <h3>Orange Coder</h3>
-    </div>
     <div>Orange coder is an coding interest group. Let's start with a session to go through a few free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
     <div>
       <h3>Topics</h3>
