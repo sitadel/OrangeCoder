@@ -18,6 +18,7 @@
       >
       <button @click="addTopic">Add Topic</button>
     </div>
+    <div class="errorMessageStyle" v-if="errorMessage.length > 0">{{errorMessage}}</div>
     <p>*Pass Code is for you to remove Topic added by you</p>
     <div>Orange coder is an coding interest group. Let's start with a lunch session to go through free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
     <ul class="reptileList">
@@ -30,16 +31,18 @@
     <div>
       <h3>Participants</h3>This list refreshed automatically by Firestore realtime database.
     </div>
+
+    <input
+      type="password"
+      placeholder="*Pass Code"
+      width="200px"
+      v-model="passCode"
+      @keyup.enter="deleteReptile"
+    >
+
     <ul class="reptileList">
       <li v-for="reptile in reptiles">
-        {{ reptile.name }} -
-        <input
-          type="password"
-          placeholder="*Pass Code"
-          width="200px"
-          v-model="passCode"
-          @keyup.enter="deleteReptile"
-        >
+        {{ reptile.name }}
         <button @click="likeReptile(reptile)">{{ reptile.like }} Like</button>
         <button @click="deleteReptile(reptile)">Remove</button>
       </li>
@@ -56,7 +59,8 @@ export default {
     return {
       reptiles: [],
       newReptile: "",
-      passCode: ""
+      passCode: "",
+      errorMessage: ""
     };
   },
   firestore() {
@@ -66,23 +70,36 @@ export default {
   },
   methods: {
     addTopic: function() {
+      if (this.newReptile.length > 30) {
+        this.errorMessage = "Topic must be less than 30 characters.";
+        return;
+      }
+
       this.$firestore.reptiles.add({
         name: this.newReptile,
         passCode: this.passCode,
         like: 0,
         timestamp: new Date()
       });
+      this.resetStatus();
+    },
+    resetStatus: function() {
       this.newReptile = "";
       this.passCode = "";
+      this.errorMessage = "";
     },
     likeReptile: function(reptile) {
       reptile.like++;
+      this.resetStatus();
     },
     deleteReptile: function(reptile) {
       //console.log(this.passCode);
       //console.log(reptile.passCode);
       if (this.passCode === reptile.passCode) {
         this.$firestore.reptiles.doc(reptile[".key"]).delete();
+        this.resetStatus();
+      } else {
+        this.errorMessage = "Enter the your pass code to remove topic.";
       }
     }
   }
@@ -100,5 +117,8 @@ export default {
 }
 .reptileList {
   list-style: none;
+}
+.errorMessageStyle {
+  color: red;
 }
 </style>
