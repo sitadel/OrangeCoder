@@ -21,6 +21,14 @@
     <div class="errorMessageStyle" v-if="errorMessage.length > 0">{{errorMessage}}</div>
     <p>*Pass Code is for you to remove Topic added by you</p>
     <div>Orange coder is an coding interest group. Let's start with a lunch session to go through free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
+    <carousel :per-page="1" :navigate-to="someLocalProperty" :mouse-drag="false">
+      <slide>
+        <img width="300" src="@/assets/TechBooksStartCoding.jpg">
+      </slide>
+      <slide>
+        <img width="300" src="@/assets/logo.png">
+      </slide>
+    </carousel>
     <ul class="reptileList">
       <li>Google Firestore</li>
       <li>CodeSandBox</li>
@@ -52,6 +60,7 @@
 
 <script>
 import { db } from "./firebase";
+import { Carousel, Slide } from "vue-carousel";
 
 export default {
   name: "app",
@@ -62,6 +71,10 @@ export default {
       passCode: "",
       errorMessage: ""
     };
+  },
+  components: {
+    Carousel,
+    Slide
   },
   firestore() {
     return {
