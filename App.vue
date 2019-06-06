@@ -5,7 +5,7 @@
       alt="Orange Coder"
       src="https://github.com/sitadel/OrangeCoder/blob/master/assets/OrangeCoder.jpg?raw=true"
     >
-    <div>Orange coder is an coding interest group. Let's start with a session to go through a few free online resources to learn coding. After that, each participant will craft out their own coding journey depending on their current level of programming skill. Starting with the following topics...</div>
+    <div>Orange coder is a coding interest group. Let's start with a session to go through a few free online resources to learn coding.  You may add topic of interest here...</div>
     <div>
       <h3>Topics</h3>
     </div>
